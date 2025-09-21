@@ -1,6 +1,6 @@
 import pytest
 from fastapi.testclient import TestClient
-from src.main import app, todos as todos_list
+from src.main import app, todos as todos_list, Todo
 
 client = TestClient(app)
 
@@ -27,7 +27,7 @@ def test_create_todo():
 def test_get_todos():
     # Clear and add test data
     todos_list.clear()
-    test_todo = {"id": 1, "title": "Test", "description": "Test"}
+    test_todo = Todo(id=1, title="Test", description="Test")
     todos_list.append(test_todo)
     
     # Test get all todos
@@ -39,7 +39,7 @@ def test_get_todos():
 def test_get_todo():
     # Clear and add test data
     todos_list.clear()
-    test_todo = {"id": 1, "title": "Test", "description": "Test"}
+    test_todo = Todo(id=1, title="Test", description="Test")
     todos_list.append(test_todo)
     
     # Test get existing todo
@@ -54,7 +54,7 @@ def test_get_todo():
 def test_update_todo():
     # Clear and add test data
     todos_list.clear()
-    test_todo = {"id": 1, "title": "Old Title", "description": "Old Description"}
+    test_todo = Todo(id=1, title="Old Title", description="Old Description")
     todos_list.append(test_todo)
     
     # Test successful update
@@ -74,7 +74,7 @@ def test_update_todo():
 def test_delete_todo():
     # Clear and add test data
     todos_list.clear()
-    test_todo = {"id": 1, "title": "Test", "description": "Test"}
+    test_todo = Todo(id=1, title="Test", description="Test")
     todos_list.append(test_todo)
     
     # Test successful deletion
